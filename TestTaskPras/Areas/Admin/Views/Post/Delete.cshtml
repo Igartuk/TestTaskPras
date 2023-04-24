@@ -1,0 +1,30 @@
+﻿@model TestTaskPrasBLL.DTOs.PostDTO
+
+@using Microsoft.Extensions.Localization;
+@using TestTaskPras.Resources;
+@inject IStringLocalizer<SharedResourse> localizer;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@localizer["Delete"].Value</h1>
+
+<h3>@localizer["AreYouSure"].Value</h3>
+<div>
+    <div class="post-container">
+    <h2>@Model.Title</h2>
+    <h3>@Model.Subtitle</h3>
+    <p>@Model.Text</p>
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="~/images/@Model.ImagePath" alt="Post image" width="300" />
+        }
+</div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value=@localizer["Delete"].Value class="btn btn-danger" /> |
+        <a href="javascript:history.back()">@localizer["Back"].Value</a>
+    </form>
+</div>

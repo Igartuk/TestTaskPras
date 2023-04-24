@@ -1,0 +1,19 @@
+﻿@model TestTaskPrasBLL.DTOs.PostDTO
+@using Microsoft.Extensions.Localization;
+@using TestTaskPras.Resources;
+@inject IStringLocalizer<SharedResourse> localizer;
+
+<div class="post-container">
+    <h2>@Model.Title</h2>
+    <h3>@Model.Subtitle</h3>
+    <p>@Model.Text</p>
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
+    {
+        <img src="~/images/@Model.ImagePath" alt="Post image" width="300" />
+    }
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@localizer["Edite"].Value</a> |
+    <a href="javascript:history.back()">@localizer["Back"].Value</a>
+</div>

@@ -1,0 +1,35 @@
+﻿.post-container {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 22px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

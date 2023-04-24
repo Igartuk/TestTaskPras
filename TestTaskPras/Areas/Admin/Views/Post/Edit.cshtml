@@ -1,0 +1,57 @@
+﻿@model TestTaskPrasBLL.DTOs.EditPostDTO
+@using Microsoft.Extensions.Localization;
+@using TestTaskPras.Resources;
+@inject IStringLocalizer<SharedResourse> localizer;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>@localizer["Edite"].Value</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">@localizer["Title"].Value</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtitle" class="control-label">@localizer["Subtitle"].Value</label>
+                <input asp-for="Subtitle" class="form-control" />
+                <span asp-validation-for="Subtitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text" class="control-label">@localizer["Text"].Value</label>
+                <input asp-for="Text" class="form-control" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagePath" class="control-label">@localizer["Image"].Value</label>
+                <input type="file" name="ImagePath" accept="image/*" />
+                <div>
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="~/images/@Model.ImagePath" alt="Post image" width="300" />
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value=@localizer["Save"].Value class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="javascript:history.back()">@localizer["Back"].Value</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

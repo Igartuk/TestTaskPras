@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TestTaskPrasBLL.DTOs.PostDTO>
+@using Microsoft.Extensions.Localization;
+@using TestTaskPras.Resources;
+@inject IStringLocalizer<SharedResourse> localizer;
+@{
+    ViewData["Title"] = "List of News";
+}
+
+<h1>@localizer["ListOfNews"].Value</h1>
+<div position="top-right">
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post">
+        <input type="submit" value=@localizer["LogOut"].Value />
+    </form>
+</div>
+<p>
+    <a asp-action="Create">@localizer["Create"].Value</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@localizer["Title"].Value</th>
+            <th>@localizer["Subtitle"].Value</th>
+            <th>@localizer["Text"].Value</th>
+            <th>@localizer["Image"].Value</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Text)
+            </td>
+            <td>
+                    <img src="~/images/@item.ImagePath" alt="" class="left" width="200" />
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@localizer["Edite"].Value</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">@localizer["Details"].Value</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">@localizer["Delete"].Value</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

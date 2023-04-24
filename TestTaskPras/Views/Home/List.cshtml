@@ -1,0 +1,43 @@
+﻿@model IEnumerable<TestTaskPrasBLL.DTOs.PostDTO>
+@using Microsoft.Extensions.Localization;
+@using TestTaskPras.Resources;
+@inject IStringLocalizer<SharedResourse> localizer;
+
+@{
+    ViewData["Title"] = "List of News";
+}
+
+<h1>@localizer["ListOfNews"].Value</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@localizer["Title"].Value</th>
+            <th>@localizer["Subtitle"].Value</th>
+            <th>@localizer["Text"].Value</th>
+            <th>@localizer["Image"].Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subtitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                        <img src="~/images/@item.ImagePath" alt="" class="left" width="200" />
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@localizer["Details"].Value</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
