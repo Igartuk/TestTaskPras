@@ -15,7 +15,11 @@ namespace TestTaskPrasDAL.Models
 {
     public class ApplicationDbContext : IdentityDbContext<User>
     {
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
+            Database.EnsureCreated();
+        
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
