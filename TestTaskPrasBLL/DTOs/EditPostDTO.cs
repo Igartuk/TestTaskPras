@@ -15,15 +15,15 @@ namespace TestTaskPrasBLL.DTOs
         public int Id { get; set; }
         [Display(Name = "Title")]
         [Required(ErrorMessage = "{0} is a required field")]
-        [StringLength(10, MinimumLength = 5, ErrorMessage = " Max length is {0} and min is 5")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = " Max length is 50 and min is 5")]
         public string Title { get; set; }
         [Display(Name = "Subtitle")]
         [Required(ErrorMessage = "{0} is a required field")]
-        [StringLength(20, MinimumLength = 5, ErrorMessage = " Max length is {0} and min is 5")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = " Max length is 100 and min is 5")]
         public string Subtitle { get; set; }
         [Display(Name = "Text")]
         [Required(ErrorMessage = "{0} is a required field")]
-        [StringLength(100,MinimumLength =5, ErrorMessage = " Max length is {0} and min is 5")]
+        [StringLength(500,MinimumLength =5, ErrorMessage = " Max length is 500 and min is 5")]
         public string Text { get; set; }        
         public string? ImagePath { get; set; }
     }

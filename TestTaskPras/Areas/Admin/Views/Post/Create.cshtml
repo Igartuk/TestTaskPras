@@ -1,4 +1,4 @@
-﻿@model TestTaskPrasBLL.DTOs.PostDTO
+﻿@model TestTaskPrasBLL.DTOs.CreatePostDTO
 @using Microsoft.Extensions.Localization;
 @using System.Globalization;
 @using TestTaskPras.Resources;
@@ -31,8 +31,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImagePath" class="control-label">@localizer["Image"].Value</label>
-                <input  type="file" name="imagePath" accept="image/*" />
-                
+                <input type="file" name="imagePath" accept=".jpg, .png" onchange="previewImage(event)" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+                <img id="imagePreview" src="#" alt="Preview" style="max-width: 300px; display: none;" />
             </div>
             <div class="form-group">
                 <input type="submit" value=@localizer["Create"].Value class="btn btn-primary" />
@@ -44,7 +45,20 @@
 <div>
    <a href="javascript:history.back()">@localizer["Back"].Value</a>
 </div>
-
+<script>
+    function previewImage(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var imagePreview = document.getElementById("imagePreview");
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

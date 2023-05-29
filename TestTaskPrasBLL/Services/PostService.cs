@@ -37,7 +37,9 @@ namespace TestTaskPrasBLL.Services
         }
         public async Task Create(CreatePostDTO createPostDTO)
         {
+
             var postEntity = _mapper.Map<Post>(createPostDTO);
+            postEntity.ImagePath = createPostDTO.ImagePath.FileName;
             await _postRepository.Create(postEntity);
         }
 

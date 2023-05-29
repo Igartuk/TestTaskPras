@@ -44,7 +44,7 @@ namespace TestTaskPras.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Subtitle,Text")] CreatePostDTO createPostDTO, IFormFile imagePath)
+        public async Task<IActionResult> Create([Bind("Title,Subtitle,Text,ImagePath")] CreatePostDTO createPostDTO, IFormFile imagePath)
         {
             
             if (ModelState.IsValid)
@@ -52,11 +52,13 @@ namespace TestTaskPras.Areas.Admin.Controllers
                 
                 if (imagePath != null)
                 {
-                    createPostDTO.ImagePath = imagePath.FileName;
-                    using (var stream = new FileStream(Path.Combine(_hostEnvironment.WebRootPath, "images/", imagePath.FileName), FileMode.Create))
+                    var fileName = Path.GetFileName(imagePath.FileName);
+                    var filePath = Path.Combine(_hostEnvironment.WebRootPath, "images", fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await imagePath.CopyToAsync(stream);
                     }
+
                 }
                 await _postService.Create(createPostDTO);
                 return RedirectToAction(nameof(Index));
