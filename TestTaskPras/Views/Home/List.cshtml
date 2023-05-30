@@ -29,7 +29,7 @@
                     @Html.DisplayFor(modelItem => item.Subtitle)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Text)
+                    @Html.Raw(item.Text)
                 </td>
                 <td>
                         <img src="~/images/@item.ImagePath" alt="" class="left" width="200" />

@@ -10,8 +10,8 @@
                 <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
             
                <h4> @Html.DisplayFor(modelItem => item.Subtitle) </h4>
-           
-               <p>@Html.DisplayFor(modelItem => item.Text)</p>
+
+            @Html.Raw(item.Text)
                <div>
                     <img src="~/images/@item.ImagePath" alt="" position="right" width="200" />
                 </div>
